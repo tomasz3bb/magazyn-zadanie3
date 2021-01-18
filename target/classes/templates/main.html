@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Storage</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/commons.css">
+</head>
+<body>
+<div th:replace="fragments.html :: logo"></div>
+<div th:replace="fragments.html :: menu"></div>
+<div id="content">
+    <th:block th:each="product : ${products}">
+        <div class="product-box">
+            <div th:text="'Name: ' + ${product.name}" class="name-box"></div>
+            <div th:text="'Category: ' + ${product.category}" class="category-box"></div>
+            <div class="product-data-box">
+                <div th:text="'Kod: ' + ${product.code}"></div>
+                <div th:text="'Ilość sztuk: ' + ${product.quantity}"></div>
+                <div th:text="'Cena: ' + ${product.price} + 'zł'"></div>
+                <div><a th:href="@{/addToStorage/{id}(id=${product.id})}" class="buy-button" th:if="${isLogged}">Dodaj 1 sztukę do magazynu</a></div>
+                <div><a th:href="@{/deleteFromStorage/{id}(id=${product.id})}" class="buy-button" th:if="${isLogged}">Usuń 1 sztukę z magazynu</a></div>
+                <div><a th:if="${role == 'ADMIN'}" th:href="@{/edit/{id}(id=${product.id})}" class="edit-button">Edytuj produkt</a></div>
+                <div><a th:if="${role == 'ADMIN'}" th:href="@{/delete/{id}(id=${product.id})}" class="delete-button">Usuń produkt</a></div>
+            </div>
+        </div>
+    </th:block>
+</div>
+</body>
+</html>

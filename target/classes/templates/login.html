@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Storage</title>
+    <link rel="stylesheet" href="/commons.css">
+    <link rel="stylesheet" href="/login.css">
+</head>
+<body>
+<div th:replace="fragments.html :: logo"></div>
+<h2>Zaloguj się, aby przejść do magazynu.</h2>
+<form id="login-form" method="post">
+    <input type="text" placeholder="Login" th:field="*{userModel.login}">
+    <input type="password" placeholder="Hasło" th:field="*{userModel.pass}">
+    <input type="submit" value="Zaloguj">
+    <a href="/register" id="register-link">Zarejestruj</a>
+</form>
+</body>
+</html>
